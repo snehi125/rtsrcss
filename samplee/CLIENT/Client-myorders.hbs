@@ -1,0 +1,125 @@
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Preferred font stack */
+      background-color: #f8f9fa; /* Light gray background */
+    }
+
+    .summary-container {
+      max-width: 900px; /* Limit width for better readability */
+      margin: auto; /* Center align container */
+      padding: 30px; /* Padding inside the container */
+      background-color: #ffffff; /* White background */
+      border-radius: 15px; /* Rounded corners */
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    }
+
+    .summary-title {
+      font-size: 2.5rem; /* Large title font size */
+      font-weight: bold; /* Bold text */
+      text-align: center; /* Center align text */
+      margin-bottom: 20px; /* Space below title */
+      color: #343a40; /* Dark text color */
+    }
+
+    .table {
+      width: 100%;
+      margin-top: 20px; /* Space above the table */
+      border-collapse: collapse; /* Remove default table border spacing */
+      background-color: #ffffff; /* White background */
+      border-radius: 15px; /* Rounded corners */
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    }
+
+    .table th,
+    .table td {
+      padding: 12px; /* Padding inside table cells */
+      text-align: center; /* Center align text */
+    }
+
+    .table thead {
+      background-color: #f8f9fa; /* Light gray background for table header */
+      border-bottom: 2px solid #dee2e6; /* Gray bottom border */
+    }
+
+    .table th {
+      font-size: 1rem; /* Table header font size */
+      font-weight: bold; /* Bold table header text */
+      color: #6c757d; /* Gray text color */
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #f8f9fa; /* Alternate row background color */
+    }
+
+    .table-striped tbody tr:hover {
+      background-color: #e9ecef; /* Hover row background color */
+    }
+
+    .table a {
+      color: #0d6efd; /* Blue link color */
+      text-decoration: none; /* Remove underline from links */
+    }
+
+    .table a:hover {
+      text-decoration: underline; /* Underline on hover */
+    }
+  </style>
+<div class="container">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid">
+            <h1 class="display-5 fw-bold">Order Summary</h1>
+            <hr>
+            <p class="col-md-8 fs-4">Thank You for choosing LMVW.</p>
+        </div>
+    </div>
+
+    <br>
+    <table class="table table-striped" id="datatablesSimple">
+        <thead>
+            <tr>
+                <th scope="col">S.No.</th>
+                <th scope="col">Date</th>
+                <th scope="col">Bill Amount</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Order Status</th>
+                <th scope="col">Invoice</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <th scope="row">{{@index}}</th>
+                <td>{{this.time}}</td>
+                <td>{{this.totalCost}}</td>
+                <td id="{{this._id}}"></td>
+                <script>
+                    if("{{this.isPaid}}" == "true") {
+                        document.getElementById("{{this._id}}").innerHTML = "{{this.paymentMethod}} - Paid"
+                    }
+                    if("{{this.paymentMethod}}" == "RazorPay" && "{{this.isPaid}}" == "false") {
+                        document.getElementById("{{this._id}}").innerHTML = '{{this.paymentMethod}} - <a href="/products/payment/{{this._id}}">Pay</a>';
+                    }
+                    if("{{this.paymentMethod}}" == "COD" && "{{this.isPaid}}" == "false") {
+                        document.getElementById("{{this._id}}").innerHTML = '{{this.paymentMethod}} - Cash-On-Delivery';
+                    }
+                </script>
+                <td>{{this.status}}</td>
+                <td><a href="/users/orders/{{this._id}}/downloadinvoice">Download</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', event => {
+
+        const datatablesSimple = document.getElementById('datatablesSimple');
+        if (datatablesSimple) {
+            new simpleDatatables.DataTable(datatablesSimple);
+        }
+    });
+
+</script>

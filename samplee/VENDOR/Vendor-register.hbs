@@ -1,0 +1,162 @@
+<style>
+        /* Custom styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Preferred font stack */
+            background-color: #f8f9fa; /* Light gray background */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Primary button color */
+            border-color: #007bff; /* Primary button border color */
+            padding: 8px 16px; /* Adjust padding */
+            font-size: 16px; /* Adjust font size */
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9; /* Darker blue on hover */
+            border-color: #0062cc; /* Darker border on hover */
+        }
+
+        .container {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Container shadow */
+            background-color: #fff; /* White background */
+            border-radius: 10px; /* Rounded corners */
+            padding: 30px; /* Padding inside container */
+        }
+
+        .form-control {
+            border-color: #ced4da; /* Form control border color */
+        }
+
+        .form-control:focus {
+            border-color: #007bff; /* Form control focus color */
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Form control focus shadow */
+        }
+
+        .form-label {
+            font-weight: bold; /* Bold form labels */
+        }
+
+        .form-file-input {
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .form-file-input input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+        .form-file-input .btn {
+            white-space: nowrap;
+        }
+    </style>
+<div class="container col-xxl-8">
+    <main>
+        <div class="py-5 text-center">
+            <h2>Create Your Account</h2>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-md-12 col-lg-12">
+                <form enctype="multipart/form-data" method="POST" action="/users/register">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="firstName" name="name" placeholder="" value="" required>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="email" class="form-label">Email </label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com">
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="pwd" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="pwd" name="pwd" onkeyup="check()" required>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="cpwd" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" name="cpwd" id="cpwd" onkeyup="check()" required>
+
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Address Line 1</label>
+                            <input type="text" class="form-control" name="address_line1" id="address" placeholder="1234 Main St" required>
+
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address2" class="form-label">Address Line 2 <span
+                                    class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control" name="address_line2" id="address2" placeholder="Apartment or suite">
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="" required>
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="state" class="form-label">State</label>
+                            <input type="text" class="form-control" name="state" id="state" placeholder="" required>
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" name="country" id="country" placeholder="" required>
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="zip" class="form-label">Pincode</label>
+                            <input type="text" class="form-control" name="pincode" id="zip" placeholder="" required>
+
+                        </div>
+                        <div class="col-6">
+                            <label for="contact" class="form-label">Contact</label>
+                            <input type="text" class="form-control" id="contact" name="contact" required>
+
+                        </div>
+                        <div class="col-6">
+                            <label for="idapp" class="form-label">Identity Document and Application</label>
+                            <input type="file" class="form-control" accept=".pdf" id="idapp" name="idapp" >
+
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-primary btn-lg" id="subBTN" disabled type="submit">Continue</button>
+                </form>
+                <script>
+                    var check = function() {
+                        if(document.getElementById('pwd').value == document.getElementById('cpwd').value) {
+                            document.getElementById('subBTN').disabled = false;
+                        }
+                        else {
+                            document.getElementById('subBTN').disabled = true;
+                        }
+                    }
+                </script>
+                <br><br><br><br>
+            </div>
+        </div>
+    </main>
+</div>

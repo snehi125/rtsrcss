@@ -1,0 +1,83 @@
+<style>
+    body {
+      background-color: #f8f9fa; /* Light gray background */
+      font-family: Arial, sans-serif; /* Default font */
+    }
+
+    .welcome-container {
+      background-color: #ffffff; /* White background */
+      border-radius: 15px; /* Rounded corners */
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      padding: 20px; /* Padding inside the container */
+    }
+
+    .welcome-title {
+      font-size: 2.5rem; /* Large title font size */
+      font-weight: bold; /* Bold text */
+      text-align: center; /* Center align text */
+      margin-bottom: 1.5rem; /* Space below title */
+    }
+
+    .welcome-text {
+      font-size: 1.25rem; /* Medium text size */
+      text-align: center; /* Center align text */
+      color: #6c757d; /* Gray text color */
+      margin-bottom: 2rem; /* Space below text */
+    }
+
+    .login-form {
+      background-color: #f8f9fa; /* Light gray background */
+      border-radius: 15px; /* Rounded corners */
+      padding: 30px; /* Padding inside the form */
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    }
+
+    .form-label {
+      color: #495057; /* Dark gray label text */
+      font-size: 1rem; /* Small label text size */
+    }
+
+    .form-control {
+      border-color: #ced4da; /* Light gray border */
+    }
+
+    .form-control:focus {
+      border-color: #80bdff; /* Focus state border color */
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Focus state shadow */
+    }
+
+    .remember-me {
+      font-size: 0.875rem; /* Small text size for checkbox */
+    }
+
+    .sign-in-btn {
+      font-size: 1.25rem; /* Medium button text size */
+      border-radius: 10px; /* Rounded button corners */
+    }
+  </style>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Welcome User!</h1>
+        <p class="col-lg-10 fs-4">Get access to your orders, wishlist and choose more from our wide range of products.</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" method="POST" action="/users/login">
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </div>

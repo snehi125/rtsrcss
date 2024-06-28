@@ -1,0 +1,91 @@
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Preferred font stack */
+      background-color: #f8f9fa; /* Light gray background */
+    }
+
+    main {
+      padding: 60px 0; /* Top and bottom padding for main content */
+    }
+
+    .card {
+      box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+    }
+
+    .card:hover {
+      transform: translateY(-5px); /* Lift card on hover */
+    }
+
+    .form-floating {
+      position: relative; /* Relative positioning for labels */
+    }
+
+    .form-floating label {
+      position: absolute; /* Absolute positioning for label */
+      top: 100%; /* Align label vertically */
+      transform: translateY(-50%); /* Center label vertically */
+      left: 15px; /* Space from input */
+      color: #495057; /* Label color */
+      pointer-events: none; /* Prevent label from being clickable */
+      transition: transform 0.2s ease-out, color 0.2s ease-out; /* Smooth transition for label */
+    }
+
+    .form-control:focus ~ label, .form-control:not(:placeholder-shown) ~ label {
+      transform: translateY(-90%) scale(0.75); /* Reduce and move up label on focus or when input is filled */
+      color: #007bff; /* Label color on focus */
+    }
+
+    .btn-primary {
+      background-color: #007bff; /* Blue primary button color */
+      border-color: #007bff; /* Blue primary button border color */
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      border-color: #0056b3; /* Darker blue border on hover */
+    }
+  </style>
+<main>
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Create Your Account</h1>
+        <p class="col-lg-10 fs-4">Looks like you're new here! Sign up with your email to get started.</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light" action="/users/signup" method="POST">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            <label for="name"></label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
+            <label for="floatingInput"></label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" onkeyup="checkPass()" name="password" placeholder="Password">
+            <label for="floatingPassword"></label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="cfloatingPassword" onkeyup="checkPass()" placeholder="Confirm Password">
+            <label for="cfloatingPassword"></label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" id="subBTN" disabled type="submit">Sign up</button>
+          <hr class="my-4">
+          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+      var checkPass = function() {
+          if(document.getElementById('floatingPassword').value == document.getElementById('cfloatingPassword').value) {
+              document.getElementById('subBTN').disabled = false;
+          }
+          else {
+              document.getElementById('subBTN').disabled = true;
+          }
+      }
+  </script>
+  </main>
